@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import os
 
-
 def sketchUP(image, detail):
     # Convert image to gray-scale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -10,7 +9,7 @@ def sketchUP(image, detail):
     # Smoothen out the image using Gaussian Blur. This also removes any noise present in the image.
     blur_gray = cv2.GaussianBlur(gray, (5,5), 0)
     
-    # Extract edges
+    # Extract edges. This will give us the sketch effect.
     canny_edges = cv2.Canny(blur_gray, detail, 70)
     
     # Do an invert binarize the image 
@@ -25,7 +24,6 @@ def save_image(image, path, file_num):
 	cv2.imwrite(path + str(file_num)+ '.jpg', image)
 	print ("::: Image has been saved.")
 	
-
 
 if __name__ == '__main__':
 	
